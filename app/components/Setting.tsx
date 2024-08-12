@@ -28,9 +28,9 @@ const Setting: React.FC<Props> = ({ users, onClose, isOpen, user }) => {
     setValue,
   } = useForm<FieldValues>({
     defaultValues: {
-      name: "",
+      name: user?.name,
       image: "",
-      bio: "",
+      bio: user?.bio,
     },
   });
 

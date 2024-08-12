@@ -20,9 +20,10 @@ const Avatar: React.FC<AvatarProps> = ({ user, notRounded, isChat }) => {
       <Image
         src={user?.image! || "/placeholder.png"}
         className={`${notRounded ? "rounded-[10px]" : "rounded-[10px]"} ${
-          isChat && "w-8 h-8 rounded-full"
+          isChat && "w-11 h-11 rounded-full"
         }`}
         fill
+        quality={100} 
         alt={user?.name!}
       />
     </div>

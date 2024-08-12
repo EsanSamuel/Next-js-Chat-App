@@ -6,6 +6,7 @@ import { FullConversationType } from "@/types";
 import axios from "axios";
 import { MdOutlineGroupAdd } from "react-icons/md";
 import CreateGroupModal from "./CreateGroupModal";
+import { usePathname } from "next/navigation";
 
 interface ConversationProps {
   conversations: FullConversationType[] | any[];
@@ -21,7 +22,7 @@ const AllConversation: React.FC<ConversationProps> = ({
   const [items, setItems] = useState(conversations);
   const [searchUsers, setSearchUsers] = useState("");
   const [groupModal, setGroupModal] = useState(false);
-  console.log(pinned);
+  const pathname = usePathname();
 
   return (
     <>
@@ -32,7 +33,12 @@ const AllConversation: React.FC<ConversationProps> = ({
           isOpen={groupModal}
         />
       )}
-      <div className="fixed bg-[#2e333d] lg:w-80 w-full overflow-y-auto lg:left-20 lg:block lg:px-10 lg:py-5 p-5 h-[100vh] hidden rounded-l-[20px]">
+      <div
+        className={`fixed bg-[#2e333d] lg:w-80 w-full overflow-y-auto lg:left-20 lg:block lg:px-10 lg:py-5 p-5
+       h-[100vh] lg:rounded-l-[20px] ${
+         pathname === "/room" ? "block" : "hidden"
+       }`}
+      >
         <div className="flex justify-between">
           <h1 className="font-bold pb-2 text-[15px] text-white">Chats</h1>
           <MdOutlineGroupAdd
@@ -56,7 +62,12 @@ const AllConversation: React.FC<ConversationProps> = ({
               </h1>
               {pinned?.map((user) => (
                 <div className="flex flex-col gap-3">
-                  <ConversationBox key={user.id} data={user?.conversation!} isPinned pinn={user}/>
+                  <ConversationBox
+                    key={user.id}
+                    data={user?.conversation!}
+                    isPinned
+                    pinn={user}
+                  />
                 </div>
               ))}
             </div>
