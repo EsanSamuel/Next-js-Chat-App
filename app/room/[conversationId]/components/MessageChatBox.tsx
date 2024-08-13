@@ -26,7 +26,11 @@ const MessageChatBox: React.FC<MessageProps> = ({ message, conversation }) => {
   return (
     <div className="flex flex-col gap-1">
       <div onClick={() => setDeleteModal(true)}>
-        <div className={`flex gap-2 p-2 ${isYourChat && "justify-end"}`}>
+        <div
+          className={`flex gap-2 p-2 cursor-pointer ${
+            isYourChat && "justify-end"
+          }`}
+        >
           {/*<div className={`flex gap-2 ${isYourChat && "flex-row-reverse"}`}>
         <Avatar user={message.sender} />
       </div>*/}
@@ -90,22 +94,24 @@ const MessageChatBox: React.FC<MessageProps> = ({ message, conversation }) => {
           </div>
         </div>
       </div>
-      <div className="flex gap-2">
-        {deleteModal && (
-          <div className="flex gap-2">
-            <MdDelete
-              size={24}
-              className="text-gray-400"
-              onClick={handleDelete}
-            />
-            <IoClose
-              size={24}
-              className="text-gray-400"
-              onClick={() => setDeleteModal(false)}
-            />
-          </div>
-        )}
-      </div>
+      {isYourChat && (
+        <div className={`flex gap-2 ${isYourChat && "justify-end"}`}>
+          {deleteModal && (
+            <div className="flex gap-2">
+              <MdDelete
+                size={24}
+                className="text-gray-400"
+                onClick={handleDelete}
+              />
+              <IoClose
+                size={24}
+                className="text-gray-400"
+                onClick={() => setDeleteModal(false)}
+              />
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

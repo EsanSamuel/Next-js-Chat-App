@@ -1,6 +1,6 @@
 "use client";
 import { FullConversationType, FullMessageType } from "@/types";
-import React from "react";
+import React, { useRef } from "react";
 import MessageChatBox from "./MessageChatBox";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import { format, formatDistanceToNowStrict } from "date-fns";
@@ -12,9 +12,10 @@ interface MessageProps {
 
 const MessageBody: React.FC<MessageProps> = ({ messages, conversation }) => {
   const otherUser = useOtherUser(conversation);
+  const bottomRef = useRef<HTMLDivElement>(null)
   return (
     <div className="flex-1 overflow-y-auto lg:px-10">
-      <h1 className="text-center  text-gray-400 text-[13px]">
+      <h1 className="text-center  text-gray-400 text-[13px] lg:p-2 p-5">
         Started a conversation with {conversation.groupName || otherUser.name}{" "}
         at {format(new Date(conversation.createdAt), "p")} on{" "}
         {format(new Date(conversation.createdAt), "MMM")}{" "}
@@ -28,6 +29,7 @@ const MessageBody: React.FC<MessageProps> = ({ messages, conversation }) => {
           conversation={conversation}
         />
       ))}
+      <div className="" ref={bottomRef} />
     </div>
   );
 };

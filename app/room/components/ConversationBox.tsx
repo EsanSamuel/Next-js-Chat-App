@@ -10,6 +10,8 @@ import axios from "axios";
 import { RiUnpinFill } from "react-icons/ri";
 import { HiPaperAirplane, HiPhoto } from "react-icons/hi2";
 import { Pinned } from "@prisma/client";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 interface ConversationBoxProps {
   data: FullConversationType | any;
@@ -21,6 +23,7 @@ const ConversationBox = ({ data, isPinned, pinn }: ConversationBoxProps) => {
   const { data: session } = useSession();
   const otherUser = useOtherUser(data);
   const router = useRouter();
+  const pathname = usePathname();
   const userEmail = session?.user?.email;
 
   const handleClick = () => {
@@ -81,11 +84,28 @@ const ConversationBox = ({ data, isPinned, pinn }: ConversationBoxProps) => {
   };
   return (
     <div
-      className="flex justify-between text-white px-3 py-3 hover:bg-[#4a4f5a] rounded-[10px]
-items-center cursor-pointer"
+      className={`flex justify-between text-white px-3 py-3 hover:bg-[#4a4f5a] rounded-[10px]
+items-center cursor-pointer ${
+        pathname === `/room/${data.id}` && "bg-[#4a4f5a] "
+      }`}
     >
       <div className="flex gap-4" onClick={handleClick}>
-        <Avatar user={otherUser!} notRounded />
+        {data.isMulti ? (
+          <div
+            className="relative inset-block overflow-hidden
+     w-11 h-11 rounded-[10px]"
+          >
+            <Image
+              src="/group.png"
+              className="rounded-[10px]"
+              fill
+              quality={100}
+              alt="Image"
+            />
+          </div>
+        ) : (
+          <Avatar user={otherUser!} notRounded />
+        )}
         <div className="flex flex-col gap-1">
           <h1 className="font-light text-[13px]">
             {data?.groupName || otherUser?.name}

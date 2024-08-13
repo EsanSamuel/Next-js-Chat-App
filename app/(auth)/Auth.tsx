@@ -8,13 +8,13 @@ import { signIn, useSession } from "next-auth/react";
 import Button from "../components/Button";
 import { useRouter } from "next/navigation";
 
-type Variant = "LOGIN" | "REGISTER";
+type AuthVariant = "LOGIN" | "REGISTER";
 
 const Auth = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [authVariant, setAuthVariant] = useState<Variant>("LOGIN");
+  const [authVariant, setAuthVariant] = useState<AuthVariant>("LOGIN");
   const {
     register,
     handleSubmit,
@@ -99,7 +99,7 @@ const Auth = () => {
   return (
     <div
       className="bg-[#26333d] flex flex-col justify-center
-     text-white shadow-lg p-8 text-center rounded-md"
+     text-white shadow-lg p-8 text-center rounded-md items-center"
     >
       <h1 className="font-bold text-xl">Create an Account!</h1>
       <p className="font-light text-[12px] mt-2">
@@ -144,17 +144,26 @@ const Auth = () => {
       </form>
       <h1 className="mt-2 text-center text-[12px]">OR</h1>
 
-      <div className="mt-2 font-light">
+      <div className="mt-2 font-light w-full">
         <Button title="Continue with Google" secondary onClick={handleGoogle} />
       </div>
 
       <div className="mt-2">
+       {authVariant === "LOGIN" ? (
+         <span className="text-[11px] font-light">
+         Don't have an account?{" "}
+         <button className="underline" onClick={toggleAuthVariant}>
+           Sign up
+         </button>
+       </span>
+       ):(
         <span className="text-[11px] font-light">
-          Don't have an account?{" "}
-          <button className="underline" onClick={toggleAuthVariant}>
-            Sign up
-          </button>
-        </span>
+        Already have an account?{" "}
+        <button className="underline" onClick={toggleAuthVariant}>
+          Log in
+        </button>
+      </span>
+       )}
       </div>
     </div>
   );

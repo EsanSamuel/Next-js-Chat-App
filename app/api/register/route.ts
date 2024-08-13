@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import prisma from "../../lib/prismadb";
 import { NextResponse } from "next/server";
-import { v2 as cloudinary} from 'cloudinary'
 
 export async function POST(request: Request) {
   try {

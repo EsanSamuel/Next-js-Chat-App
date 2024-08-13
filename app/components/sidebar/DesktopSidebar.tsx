@@ -11,14 +11,18 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { IoSettings } from "react-icons/io5";
 import Setting from "../Setting";
+import { useRouter } from "next/navigation";
 
 interface DesktopSidebarProps {
   user: User;
 }
 
 const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ user }) => {
-  console.log(user);
+  const router = useRouter();
   const [settingModal, setSettingModal] = useState(false);
+  const handleSignOut = () => {
+    signOut().then(() => router.push("/"));
+  };
   return (
     <>
       {settingModal && (
@@ -54,7 +58,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ user }) => {
               <IoLogOut
                 size={24}
                 className="hover:opacity-50"
-                onClick={() => signOut()}
+                onClick={handleSignOut}
               />
               <p className="text-[9px]">Logout</p>
             </li>

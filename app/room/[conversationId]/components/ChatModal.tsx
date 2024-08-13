@@ -26,25 +26,46 @@ const ChatModal: React.FC<ChatModalProps> = ({
     router.push(`/room/${conversation.id}`);
   };
   return (
-    <div className="h-[100vh] w-[350px] bg-[#131313] shadow-lg right-0 fixed p-5 overflow-y-auto">
+    <div className="h-[100vh] w-[350px] bg-[#131313] shadow-lg right-0 fixed p-5 overflow-y-auto z-100">
       <div className="flex justify-between  text-white">
         <h1 className="text-[15px] font-bold">Chat details</h1>
         <IoClose className="h-6 w-6 cursor-pointer" onClick={onClose} />
       </div>
       <div className="mt-3 flex flex-col gap-2 justify-center items-center">
-        <Image
-          src={otherUser?.image || "/placeholder.png"}
-          height={100}
-          width={100}
-          className="w-20 h-20 rounded-full"
-          alt="Profile picture"
-        />
+        {conversation.isMulti ? (
+          <div
+            className="relative inset-block overflow-hidden
+ w-11 h-11 rounded-[10px]"
+          >
+            <Image
+              src="/group.png"
+              className="rounded-[10px]"
+              fill
+              quality={100}
+              alt="Image"
+            />
+          </div>
+        ) : (
+          <Image
+            src={otherUser?.image || "/placeholder.png"}
+            height={100}
+            width={100}
+            className="w-20 h-20 rounded-full"
+            alt="Profile picture"
+          />
+        )}
+
         <h1 className="text-[15px] text-white">
           {conversation?.groupName || otherUser?.name}
         </h1>
         <div>
           {!conversation.isMulti && (
             <p className="text-gray-400 text-[10px]">{otherUser?.email}</p>
+          )}
+        </div>
+        <div>
+          {!conversation.isMulti && (
+            <p className="text-gray-400 text-[10px]">{otherUser?.bio}</p>
           )}
         </div>
         <div>
@@ -92,7 +113,7 @@ const ChatModal: React.FC<ChatModalProps> = ({
         <h1 className="text-[15px] text-white text-start">Gallery</h1>
         <div>
           {messages.length > 0 ? (
-            <div className=" grid gap-2 grid-cols-3 w-full">
+            <div className="grid gap-2 grid-cols-3 w-full mt-2">
               {messages?.map((message) => (
                 <div className="">
                   <GalleryBox image={message?.image} key={message.id} />

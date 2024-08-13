@@ -42,7 +42,7 @@ const CreateGroupModal: React.FC<Props> = ({ users, onClose, isOpen }) => {
         className="text-gray-400 text-center flex flex-col gap-3"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="font-bold text-white">Create Group</h1>
+        <h1 className="font-bold text-white lg:mt-0 mt-3">Create Group</h1>
         <p className="text-[12px] font-light">
           Create a group with more than two participants
         </p>

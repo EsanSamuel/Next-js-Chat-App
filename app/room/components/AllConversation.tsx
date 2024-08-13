@@ -89,7 +89,7 @@ const AllConversation: React.FC<ConversationProps> = ({
               }
             })
             .map((conversation) => (
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-4">
                 <ConversationBox key={conversation.id} data={conversation} />
               </div>
             ))}

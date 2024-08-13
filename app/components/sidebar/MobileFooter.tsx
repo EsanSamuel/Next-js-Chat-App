@@ -12,6 +12,7 @@ import Link from "next/link";
 import { IoSettings } from "react-icons/io5";
 import Setting from "../Setting";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface MobileProps {
   user: User;
@@ -20,9 +21,18 @@ interface MobileProps {
 const MobileFooter: React.FC<MobileProps> = ({ user }) => {
   const [settingModal, setSettingModal] = useState(false);
   const pathname = usePathname();
-  if (pathname === "/room/[conversationId]") {
+  const router = useRouter();
+  const shouldShowFooter =
+    pathname.includes("/room") && pathname.split("/").length === 3;
+
+  if (shouldShowFooter) {
     return null;
   }
+
+  const handleSignOut = () => {
+    signOut().then(() => router.push("/"));
+  };
+
   return (
     <>
       {settingModal && (
@@ -32,7 +42,7 @@ const MobileFooter: React.FC<MobileProps> = ({ user }) => {
           user={user}
         />
       )}
-      <div className="fixed flex justify-between z-40 items-center bg-[#2e333d]  bottom-0 p-3 w-full lg:hidden ">
+      <div className="fixed flex justify-between z-40 items-center bg-[#2e333d]  bottom-0 p-5 w-full lg:hidden ">
         <div className="flex justify-between w-full">
           <ul className="flex justify-between cursor-pointer font-light w-full text-gray-400">
             <Link href="/users">
@@ -50,14 +60,6 @@ const MobileFooter: React.FC<MobileProps> = ({ user }) => {
                 <p className="text-[9px]">All chats</p>
               </li>
             </Link>
-            <li className="flex flex-col justify-center items-center">
-              <IoLogOut
-                size={24}
-                className="hover:opacity-50"
-                onClick={() => signOut()}
-              />
-              <p className="text-[9px]">Logout</p>
-            </li>
 
             <li
               className="flex flex-col justify-center items-center cursor-pointer"
@@ -65,6 +67,15 @@ const MobileFooter: React.FC<MobileProps> = ({ user }) => {
             >
               <IoSettings size={24} className="hover:opacity-50" />
               <p className="text-[9px]">Settings</p>
+            </li>
+
+            <li className="flex flex-col justify-center items-center">
+              <IoLogOut
+                size={24}
+                className="hover:opacity-50"
+                onClick={() => signOut()}
+              />
+              <p className="text-[9px]">Logout</p>
             </li>
           </ul>
         </div>

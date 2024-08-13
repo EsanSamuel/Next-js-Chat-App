@@ -7,6 +7,7 @@ import { HiEllipsisHorizontal } from "react-icons/hi2";
 import { IoIosArrowBack } from "react-icons/io";
 import Link from "next/link";
 import ChatModal from "./ChatModal";
+import Image from 'next/image'
 
 interface HeaderProps {
   conversation: FullConversationType | any;
@@ -37,7 +38,21 @@ const Header: React.FC<HeaderProps> = ({ conversation, messages }) => {
           <Link href="/room">
             <IoIosArrowBack size={24} className="text-gray-400" />
           </Link>
-          <Avatar user={otherUser!} />
+          {conversation.isMulti ? (
+             <div
+             className="relative inset-block overflow-hidden
+            w-11 h-11 rounded-[10px]">
+                 <Image
+                   src="/group.png"
+                   className="rounded-[10px]"
+                   fill
+                   quality={100}
+                   alt="Image"
+                 />
+                 </div>
+          ): (
+            <Avatar user={otherUser!} />
+          )}
           <div>
             <h1 className="text-white font-bold">
               {conversation.groupName || otherUser?.name}
