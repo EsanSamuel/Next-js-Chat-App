@@ -7,7 +7,7 @@ import { User } from "@prisma/client";
 const AllUsers = ({ users }: { users: User[] }) => {
   const [searchUsers, setSearchUsers] = useState("");
   return (
-    <div className="fixed bg-[#2e333d] lg:w-80 w-full overflow-y-auto lg:left-20 lg:block lg:px-10 lg:py-5 p-5 h-[100vh]
+    <div className="fixed bg-[#2e333d] lg:w-80 w-full overflow-y-auto lg:left-20 lg:block lg:px-10 lg:py-5 p-2 h-[100vh]
     lg:first:rounded-l-[20px]">
       <h1 className="font-bold pb-2 text-[15px] text-white">Users</h1>
       <input
