@@ -16,9 +16,7 @@ const GalleryBox: React.FC<GalleryProps> = ({ image }) => {
           className="w-40 h-20 rounded-[10px]"
           alt="Profile picture"
         />
-      ) : (
-        ""
-      )}
+      ) : null}
     </div>
   );
 };

@@ -20,7 +20,7 @@ export default async function UsersLayout({
         users={users!}
         pinned={pinned!}
       />
-      <div className="h-full bg-[#2e333d] rounded-l-[20px]">{children}</div>
+      <div className="h-full bg-[#2e333d] lg:rounded-l-[20px]">{children}</div>
     </Sidebar>
   );
 }

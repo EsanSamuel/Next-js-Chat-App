@@ -22,7 +22,11 @@ const MessageBody: React.FC<MessageProps> = ({ messages, conversation }) => {
         {format(new Date(conversation.createdAt), "yyyy")}.
       </h1>
       {messages?.map((message) => (
-        <MessageChatBox key={message.id} message={message} />
+        <MessageChatBox
+          key={message.id}
+          message={message}
+          conversation={conversation}
+        />
       ))}
     </div>
   );

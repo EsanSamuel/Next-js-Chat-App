@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ conversation, messages }) => {
     if (conversation.isMulti) {
       return `${conversation.users.length} members`;
     }
-    return "Active";
+    return "Online";
   }, [conversation]);
   return (
     <>
@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ conversation, messages }) => {
           messages={messages!}
         />
       )}
-      <div className="flex w-full justify-between p-5 ">
+      <div className="flex w-full justify-between lg:p-5 p-2 pt-3">
         <div className="flex gap-3 items-center">
           <Link href="/room">
             <IoIosArrowBack size={24} className="text-gray-400" />
