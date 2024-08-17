@@ -96,7 +96,7 @@ items-center cursor-pointer ${
      w-11 h-11 rounded-[10px]"
           >
             <Image
-              src="/group.png"
+              src={data.groupImage || "/group.png"}
               className="rounded-[10px]"
               fill
               quality={100}
@@ -112,8 +112,8 @@ items-center cursor-pointer ${
           </h1>
           <div>
             <p
-              className={`text-[10px] text-gray-400 ${
-                hasSeenMessage && "text-white font-bold"
+              className={`text-[10px] text-white font-bold ${
+                hasSeenMessage && "text-gray-400"
               }`}
             >
               {lastMessageToBeShown}

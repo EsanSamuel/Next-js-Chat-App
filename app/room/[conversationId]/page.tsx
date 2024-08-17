@@ -14,8 +14,12 @@ const Room = async ({ params }: { params: Params }) => {
   const messages = await getAllMessages(params.conversationId);
   return (
     <div className="h-[100vh] lg:pl-80 flex flex-col">
-      <Header conversation={conversation} messages={messages!}/>
-      <MessageBody messages={messages!} conversation={conversation} />
+      <Header conversation={conversation} messages={messages!} />
+      <MessageBody
+        messages={messages!}
+        conversation={conversation}
+        conversationId={params.conversationId}
+      />
       <Form conversationId={params.conversationId} />
     </div>
   );

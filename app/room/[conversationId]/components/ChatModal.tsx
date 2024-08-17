@@ -8,6 +8,10 @@ import { format, formatDistanceToNowStrict } from "date-fns";
 import GalleryBox from "./GalleryBox";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { HiPhoto } from "react-icons/hi2";
+import { CldUploadButton } from "next-cloudinary";
+import toast from "react-hot-toast";
 
 interface ChatModalProps {
   conversation: FullConversationType | any;
@@ -25,6 +29,13 @@ const ChatModal: React.FC<ChatModalProps> = ({
   const handleClick = () => {
     router.push(`/room/${conversation.id}`);
   };
+  const updateGroupImage = (result?: any) => {
+    axios.patch(`/api/conversations/${conversation.id}`, {
+      isMulti: true,
+      groupImage: result?.info?.secure_url,
+    })
+    .then(()=> toast.success("Group Image updated!"));
+  };
   return (
     <div className="h-[100vh] w-[350px] bg-[#131313] shadow-lg right-0 fixed p-5 overflow-y-auto z-100">
       <div className="flex justify-between  text-white">
@@ -35,10 +46,10 @@ const ChatModal: React.FC<ChatModalProps> = ({
         {conversation.isMulti ? (
           <div
             className="relative inset-block overflow-hidden
- w-11 h-11 rounded-[10px]"
+                 w-11 h-11 rounded-[10px]"
           >
             <Image
-              src="/group.png"
+              src={conversation.groupImage || "/group.png"}
               className="rounded-[10px]"
               fill
               quality={100}
@@ -53,6 +64,18 @@ const ChatModal: React.FC<ChatModalProps> = ({
             className="w-20 h-20 rounded-full"
             alt="Profile picture"
           />
+        )}
+
+        {conversation?.isMulti && (
+          <div>
+            <CldUploadButton
+              options={{ maxFiles: 1 }}
+              onSuccess={updateGroupImage}
+              uploadPreset="esbk4pom"
+            >
+              <HiPhoto size={24} className="text-gray-400" />
+            </CldUploadButton>
+          </div>
         )}
 
         <h1 className="text-[15px] text-white">

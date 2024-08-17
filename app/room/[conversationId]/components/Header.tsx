@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ conversation, messages }) => {
              className="relative inset-block overflow-hidden
             w-11 h-11 rounded-[10px]">
                  <Image
-                   src="/group.png"
+                   src={conversation.groupImage || "/group.png"}
                    className="rounded-[10px]"
                    fill
                    quality={100}

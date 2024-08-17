@@ -41,6 +41,7 @@ model Conversation {
   isMulti       Boolean?
   createdAt     DateTime @default(now())
   lastMessageAt DateTime @default(now())
+  groupImage String?
 
   messageIds String[]  @db.ObjectId
   messages   Message[]

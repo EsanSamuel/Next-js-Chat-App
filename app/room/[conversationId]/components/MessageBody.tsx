@@ -1,18 +1,32 @@
 "use client";
 import { FullConversationType, FullMessageType } from "@/types";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import MessageChatBox from "./MessageChatBox";
 import useOtherUser from "@/app/hooks/useOtherUser";
 import { format, formatDistanceToNowStrict } from "date-fns";
+import axios from "axios";
 
 interface MessageProps {
   messages: FullMessageType[] | any[];
   conversation: FullConversationType | any;
+  conversationId: string;
 }
 
-const MessageBody: React.FC<MessageProps> = ({ messages, conversation }) => {
+const MessageBody: React.FC<MessageProps> = ({
+  messages,
+  conversation,
+  conversationId,
+}) => {
   const otherUser = useOtherUser(conversation);
-  const bottomRef = useRef<HTMLDivElement>(null)
+  const bottomRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    axios.post(`/api/conversations/${conversationId}/seen_message`);
+  }, [conversationId]);
+
+  useEffect(() => {
+    bottomRef?.current?.scrollIntoView();
+  }, [bottomRef]);
+
   return (
     <div className="flex-1 overflow-y-auto lg:px-10">
       <h1 className="text-center  text-gray-400 text-[13px] lg:p-2 p-5">

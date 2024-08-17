@@ -8,6 +8,7 @@ import Image from "next/image";
 import axios from "axios";
 import { MdDelete } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
+import toast from "react-hot-toast";
 
 interface MessageProps {
   message: FullMessageType | any;
@@ -20,7 +21,9 @@ const MessageChatBox: React.FC<MessageProps> = ({ message, conversation }) => {
   const userEmail = session?.user?.email;
   const isYourChat = userEmail === message.sender.email;
   const handleDelete = () => {
-    axios.delete(`/api/messages/${message.id}`);
+    axios
+      .delete(`/api/messages/${message.id}`)
+      .then(() => toast.success("Message deleted!"));
   };
 
   return (
