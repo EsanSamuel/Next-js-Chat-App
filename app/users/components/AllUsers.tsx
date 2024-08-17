@@ -28,8 +28,8 @@ const AllUsers = ({ users }: { users: User[] }) => {
             }
           })
           .map((user) => (
-            <div className="flex flex-col gap-3">
-              <UserItem key={user.id} data={user} />
+            <div className="flex flex-col gap-3" key={user.id}>
+              <UserItem data={user} />
             </div>
           ))}
       </div>

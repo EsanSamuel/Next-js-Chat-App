@@ -61,9 +61,8 @@ const AllConversation: React.FC<ConversationProps> = ({
                 Pinned Chats
               </h1>
               {pinned?.map((user) => (
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3"  key={user.id}>
                   <ConversationBox
-                    key={user.id}
                     data={user?.conversation!}
                     isPinned
                     pinn={user}
@@ -89,8 +88,8 @@ const AllConversation: React.FC<ConversationProps> = ({
               }
             })
             .map((conversation) => (
-              <div className="flex flex-col gap-4">
-                <ConversationBox key={conversation.id} data={conversation} />
+              <div className="flex flex-col gap-4" key={conversation.id}>
+                <ConversationBox  data={conversation} />
               </div>
             ))}
         </div>

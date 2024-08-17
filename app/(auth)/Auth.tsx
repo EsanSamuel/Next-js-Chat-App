@@ -40,7 +40,7 @@ const Auth = () => {
       router.push("/users");
       console.log(session?.user?.email);
     }
-  }, [status, session?.user?.email]);
+  }, [status, session?.user?.email, router]);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     try {
@@ -151,7 +151,7 @@ const Auth = () => {
       <div className="mt-2">
        {authVariant === "LOGIN" ? (
          <span className="text-[11px] font-light">
-         Don't have an account?{" "}
+         Don&apos;t have an account?{" "}
          <button className="underline" onClick={toggleAuthVariant}>
            Sign up
          </button>

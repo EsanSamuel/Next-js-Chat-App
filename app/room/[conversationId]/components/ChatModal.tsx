@@ -138,8 +138,8 @@ const ChatModal: React.FC<ChatModalProps> = ({
           {messages.length > 0 ? (
             <div className="grid gap-2 grid-cols-3 w-full mt-2">
               {messages?.map((message) => (
-                <div className="">
-                  <GalleryBox image={message?.image} key={message.id} />
+                <div className="" key={message.id}>
+                  <GalleryBox image={message?.image} />
                 </div>
               ))}
             </div>
