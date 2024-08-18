@@ -67,7 +67,7 @@ const MessageBody: React.FC<MessageProps> = ({
           conversation={conversation}
         />
       ))}
-      <div className="" ref={bottomRef} />
+      <div className="pt-10" ref={bottomRef} />
     </div>
   );
 };
