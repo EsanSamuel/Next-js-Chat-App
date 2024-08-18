@@ -60,8 +60,8 @@ const ConversationBox = ({ data, isPinned, pinn }: ConversationBoxProps) => {
     if (lastMessage?.image) {
       return (
         <div
-          className={`flex gap-2 items-center text-gray-400 ${
-            hasSeenMessage && "text-white font-bold"
+          className={`flex gap-2 items-center ${
+            hasSeenMessage ? "text-gray-400" : "text-white font-bold"
           }`}
         >
           <HiPhoto size={18} className="" />
@@ -112,7 +112,7 @@ items-center cursor-pointer ${
           </h1>
           <div>
             <p
-              className={`text-[10px] truncate w-full ${
+              className={`text-[10px] ${
                 hasSeenMessage ? "text-gray-400" : "text-white font-bold"
               }`}
             >
