@@ -19,13 +19,13 @@ const AllUsers: React.FC<AllUserProps> = ({ users, currentUser }) => {
     >
       <div className="flex justify-between items-center pb-2">
         <h1 className="font-bold text-[15px] text-white">Users</h1>
-        <div className="w-8 h-8 rounded-full lg:hidden block">
+        <div className="w-5 h-5 rounded-full lg:hidden block">
           <Image
             src={currentUser?.image!}
             alt={currentUser?.name!}
             width={100}
             height={100}
-            className="rounded-full h-8 w-8"
+            className="rounded-full h-5 w-5"
           />
         </div>
       </div>
