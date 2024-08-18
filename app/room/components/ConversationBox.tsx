@@ -112,7 +112,7 @@ items-center cursor-pointer ${
           </h1>
           <div>
             <p
-              className={`text-[10px] truncate ${
+              className={`text-[10px] truncate w-full ${
                 hasSeenMessage ? "text-gray-400" : "text-white font-bold"
               }`}
             >
