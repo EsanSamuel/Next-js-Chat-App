@@ -37,7 +37,7 @@ const ChatModal: React.FC<ChatModalProps> = ({
     .then(()=> toast.success("Group Image updated!"));
   };
   return (
-    <div className="h-[100vh] w-[350px] bg-[#131313] shadow-lg right-0 fixed p-5 overflow-y-auto z-100">
+    <div className="h-[100vh] w-[350px] bg-[#131313] shadow-lg right-0 fixed p-5 overflow-y-auto z-100 inset-block">
       <div className="flex justify-between  text-white">
         <h1 className="text-[15px] font-bold">Chat details</h1>
         <IoClose className="h-6 w-6 cursor-pointer" onClick={onClose} />
