@@ -92,35 +92,3 @@ export async function POST(request: Request) {
     return new NextResponse("Internale server error", { status: 500 });
   }
 }
-
-export const GET = async (request: Request) => {
-  try {
-    try {
-      const currentUser = await getCurrentUser();
-
-      if (!currentUser) {
-        return [];
-      }
-      const conversations = await prisma?.conversation.findMany({
-        orderBy: {
-          lastMessageAt: "desc",
-        },
-        where: {
-          userIds: {
-            has: currentUser.id,
-          },
-        },
-        include: {
-          users: true,
-        },
-      });
-      console.log("Conversations fetched:", conversations);
-      return NextResponse.json(conversations);
-    } catch (error) {
-      console.log(error);
-    }
-  } catch (error) {
-    console.log(error);
-    return new NextResponse("Internale server error", { status: 500 });
-  }
-};
