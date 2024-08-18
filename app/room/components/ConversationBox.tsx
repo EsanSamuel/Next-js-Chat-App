@@ -112,8 +112,8 @@ items-center cursor-pointer ${
           </h1>
           <div>
             <p
-              className={`text-[10px] text-white truncate font-bold ${
-                hasSeenMessage && "text-gray-400"
+              className={`text-[10px] truncate ${
+                hasSeenMessage ? "text-gray-400" : "text-white font-bold"
               }`}
             >
               {lastMessageToBeShown}
