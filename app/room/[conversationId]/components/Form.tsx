@@ -37,7 +37,7 @@ const Form: React.FC<FormProps> = ({ conversationId }) => {
   };
 
   return (
-    <div className="flex w-full items-center justify-center lg:gap-4 gap-2 lg:pb-3 lg:px-5 p-2 text-gray-400 fixed">
+    <div className="flex w-full items-center justify-center lg:gap-4 gap-2 lg:pb-3 lg:px-5 p-2 text-gray-400">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex w-full items-center justify-center lg:gap-4 gap-2 lg:pb-3 lg:px-5 p-2"
