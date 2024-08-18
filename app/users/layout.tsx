@@ -12,7 +12,7 @@ const users = await getUsers()
 const currentUser = await getCurrentUser()
   return (
     <Sidebar>
-        <AllUsers users={users!} currentUser={currentUser} />
+        <AllUsers users={users!} currentUser={currentUser!} />
       <div className="h-full bg-[#2e333d] lg:rounded-l-[20px]">{children}</div>
     </Sidebar>
   );
