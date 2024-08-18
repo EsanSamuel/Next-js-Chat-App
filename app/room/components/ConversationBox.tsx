@@ -50,7 +50,7 @@ const ConversationBox = ({ data, isPinned, pinn }: ConversationBoxProps) => {
     return (
       seenMessage.filter((user: any) => user.email === userEmail).length !== 0
     );
-  }, [lastMessage]);
+  }, [lastMessage, userEmail]);
 
   const lastMessageToBeShown = useMemo(() => {
     if (lastMessage?.text) {
