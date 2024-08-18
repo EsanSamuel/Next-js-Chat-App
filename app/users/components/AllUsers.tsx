@@ -21,8 +21,8 @@ const AllUsers: React.FC<AllUserProps> = ({ users, currentUser }) => {
         <h1 className="font-bold text-[15px] text-white">Users</h1>
         <div className="w-8 h-8 rounded-full lg:hidden block">
           <Image
-            src={currentUser.image!}
-            alt={currentUser.name!}
+            src={currentUser?.image!}
+            alt={currentUser?.name!}
             width={100}
             height={100}
             className="rounded-full h-8 w-8"
