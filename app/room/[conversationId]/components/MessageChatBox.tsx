@@ -61,7 +61,7 @@ const MessageChatBox: React.FC<MessageProps> = ({ message, conversation }) => {
                 }
        p-2 px-4 text-start min-w-[100px] w-auto h-auto flex flex-col lg:max-w-[500px] max-w-[500px]`}
               >
-                <h1 className="text-white text-[13px]">{message.text}</h1>
+                <h1 className="text-white text-[11px]">{message.text}</h1>
                 <p
                   className={`text-[8px] font-light text-white ${
                     isYourChat ? "text-end" : "text-end"
