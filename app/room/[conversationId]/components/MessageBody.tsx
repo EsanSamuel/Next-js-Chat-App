@@ -43,7 +43,7 @@ const MessageBody: React.FC<MessageProps> = ({
       bottomRef?.current?.scrollIntoView();
     };
 
-    pusherClient.bind("messages:new", () => messageHandler);
+    pusherClient.bind("messages:new", messageHandler);
 
     return () => {
       pusherClient.unsubscribe(conversationId);
