@@ -35,7 +35,7 @@ const AllConversation: React.FC<ConversationProps> = ({
       )}
       <div
         className={`fixed bg-[#2e333d] lg:w-80 w-full overflow-y-auto lg:left-20 lg:block lg:px-10 lg:py-5 p-2
-       h-[100vh] lg:rounded-l-[20px] ${
+       h-full lg:rounded-l-[20px] ${
          pathname === "/room" ? "block" : "hidden"
        }`}
       >
