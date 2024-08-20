@@ -49,7 +49,7 @@ const MessageBody: React.FC<MessageProps> = ({
       pusherClient.unsubscribe(conversationId);
       pusherClient.unbind("messages:new", messageHandler);
     };
-  }, [bottomRef, conversationId]);
+  }, [conversationId]);
 
   return (
     <div className="flex-1 overflow-y-auto lg:px-10">
