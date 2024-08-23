@@ -30,6 +30,9 @@ export const POST = async (request: Request) => {
           },
         },
       },
+        include: {
+          sender:true
+        }
     });
 
     const updatedConversation = await prisma.conversation.update({
