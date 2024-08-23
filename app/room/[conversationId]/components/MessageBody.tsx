@@ -7,6 +7,7 @@ import { format, formatDistanceToNowStrict } from "date-fns";
 import axios from "axios";
 import { pusherClient } from "@/app/lib/pusher";
 import { find } from "lodash";
+import { useSession } from "next-auth/react";
 
 interface MessageProps {
   messages: FullMessageType[] | any[];
@@ -19,6 +20,7 @@ const MessageBody: React.FC<MessageProps> = ({
   conversation,
   conversationId,
 }) => {
+  const { data: session } = useSession();
   const otherUser = useOtherUser(conversation);
   const bottomRef = useRef<HTMLDivElement>(null);
   const [allMessages, setAllMessages] = useState(messages);
@@ -27,6 +29,7 @@ const MessageBody: React.FC<MessageProps> = ({
   }, [conversationId]);
 
   useEffect(() => {
+    const userEmail = session?.user?.email;
     pusherClient.subscribe(conversationId);
     bottomRef?.current?.scrollIntoView();
 
@@ -49,7 +52,7 @@ const MessageBody: React.FC<MessageProps> = ({
       pusherClient.unsubscribe(conversationId);
       pusherClient.unbind("messages:new", messageHandler);
     };
-  }, [conversationId]);
+  }, [conversationId, session?.user?.email]);
 
   return (
     <div className="flex-1 overflow-y-auto lg:px-10">
