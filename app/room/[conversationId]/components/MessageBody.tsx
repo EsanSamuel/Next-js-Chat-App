@@ -56,7 +56,7 @@ const MessageBody: React.FC<MessageProps> = ({
 
   return (
     <div className="flex-1 overflow-y-auto lg:px-10">
-      <h1 className="text-center  text-gray-400 text-[13px] lg:p-2 p-5">
+      <h1 className="text-center  text-gray-400 text-[11px] lg:p-2 p-5">
         Started a conversation with {conversation.groupName || otherUser.name}{" "}
         at {format(new Date(conversation.createdAt), "p")} on{" "}
         {format(new Date(conversation.createdAt), "MMM")}{" "}
