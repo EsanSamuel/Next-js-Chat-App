@@ -38,6 +38,7 @@ const Input: React.FC<InputProps> = ({
           focus:ring-2
           focus:ring-inset 
           text-black
+          text-[12px]
           ${isGroup && "bg-[#2e333d] border-gray-400 border-[1px] text-white"}
        `}
         id={id}
