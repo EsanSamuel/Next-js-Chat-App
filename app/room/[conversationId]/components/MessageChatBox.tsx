@@ -19,7 +19,7 @@ const MessageChatBox: React.FC<MessageProps> = ({ message, conversation }) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const { data: session } = useSession();
   const userEmail = session?.user?.email;
-  const isYourChat = userEmail === message.sender.email;
+  const isYourChat = userEmail === message?.sender?.email;
   const handleDelete = () => {
     axios
       .delete(`/api/messages/${message.id}`)
