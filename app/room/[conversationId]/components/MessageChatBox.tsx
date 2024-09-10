@@ -90,7 +90,9 @@ const MessageChatBox: React.FC<MessageProps> = ({ message, conversation }) => {
                     isYourChat ? "text-end" : "text-end"
                   }`}
                 >
-                  {format(new Date(message.createdAt), "p")}
+                  {format(new Date(message.createdAt), "p")} 
+        {format(new Date(conversation.createdAt), "MMM")}{" "}
+        {format(new Date(conversation.createdAt), "dd")},{" "}
                 </p>
               </div>
             )}
